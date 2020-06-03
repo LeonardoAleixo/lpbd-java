@@ -1,2 +1,2 @@
 # lpbd-java
-Projeto Angular com objetivo de organizar tarefas de usuários
+Projeto Java com objetivo de organizar tarefas de usuários
