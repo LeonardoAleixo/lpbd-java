@@ -25,14 +25,39 @@ import lpbd.service.TarefaService;
 @RequestMapping("/lpbd/tarefa")
 public class TarefaRest {
 	@Autowired
-	private TarefaService userService;
+	private TarefaService tarefaService;
 
 	@GetMapping("/get/id/{id}/")
 	@CrossOrigin
-	ResponseEntity<String> getBbyId(@PathVariable Integer id) {
+	ResponseEntity<String> getById(@PathVariable Integer id) {
 		String response = null;
 		try {
-			response = userService.encontrarPorId(id).toString();
+			response = tarefaService.encontrarPorId(id).toString();
+		} catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<String>(response, HttpStatus.OK);
+	}
+	
+	@GetMapping("/get/id/user/{id}/")
+	@CrossOrigin
+	ResponseEntity<String> getByIdUser(@PathVariable Integer id) {
+		String response = null;
+		try {
+			response = tarefaService.encontrarPorUsuario(id).toString();
+		} catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<String>(response, HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("/get/id/importancia/{id}/")
+	@CrossOrigin
+	ResponseEntity<String> getByIdImportancia(@PathVariable Integer id) {
+		String response = null;
+		try {
+			response = tarefaService.encontrarPorImportancia(id).toString();
 		} catch (Exception e) {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
@@ -45,7 +70,7 @@ public class TarefaRest {
 	ResponseEntity<String> getAll() {
 		String response = null;
 		try {
-			response = userService.encontrarPorPeriodo( new Date(), new Date()).toString();
+			response = tarefaService.encontrarPorPeriodo( new Date(), new Date()).toString();
 		} catch (Exception e) {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
@@ -59,7 +84,7 @@ public class TarefaRest {
 	ResponseEntity<String> save(@Valid @RequestBody ObjectTarefa objectTarefa) {
 		String response = "";
 		try {
-			response = userService.salvar(objectTarefa).toString();
+			response = tarefaService.salvar(objectTarefa).toString();
 		} catch (Exception e) {
 			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
