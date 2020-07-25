@@ -1,5 +1,6 @@
 package lpbd.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,8 +20,22 @@ public class TarefaServiceImpl implements TarefaService {
 
 	@Override
 	public List<ObjectTarefa> encontrarPorUsuario(Integer idUsuario) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Tarefa> listaTarefa = tarefaRepository.findAllByUser(idUsuario);
+		List<ObjectTarefa> listaObjectTarefa = new ArrayList<>();
+		for(Tarefa tarefa : listaTarefa) {
+			listaObjectTarefa.add(preencherObjectTarefa(tarefa));
+		}
+		return listaObjectTarefa;
+	}
+	
+	@Override
+	public List<ObjectTarefa> encontrarPorImportancia(Integer importancia) {
+		List<Tarefa> listaTarefa = tarefaRepository.findAllByImportancia(importancia);
+		List<ObjectTarefa> listaObjectTarefa = new ArrayList<>();
+		for(Tarefa tarefa : listaTarefa) {
+			listaObjectTarefa.add(preencherObjectTarefa(tarefa));
+		}
+		return listaObjectTarefa;
 	}
 
 	@Override

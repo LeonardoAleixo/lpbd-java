@@ -10,6 +10,8 @@ public interface TarefaService {
 	
 	public List<ObjectTarefa> encontrarPorUsuario(Integer idUsuario);
 	
+	public List<ObjectTarefa> encontrarPorImportancia(Integer importancia);
+	
 	public ObjectTarefa encontrarPorId(Integer idTarefa);
 	
 	public List<ObjectTarefa> encontrarPorPeriodo(Date inicio, Date fim);
