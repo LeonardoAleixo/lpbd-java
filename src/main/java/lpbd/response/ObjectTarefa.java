@@ -6,9 +6,7 @@ public class ObjectTarefa {
 	private Integer idTarefa;
 	private Long dataFim;
 	private Integer usuario;
-
 	private Integer importancia;
-
 	private Long dataPrevistaFim;
 	private String titulo;
 	private Long dataInicio;
